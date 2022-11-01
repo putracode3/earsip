@@ -30,12 +30,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="{{ route('surat-masuk.index') }}">Surat Masuk</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Surat Keluar</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="{{ route('surat-masuk.index') }}">Surat Masuk</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{ route('surat-keluar.index') }}">Surat Keluar</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

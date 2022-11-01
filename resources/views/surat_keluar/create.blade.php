@@ -7,7 +7,7 @@
             <h2>Tambah Surat Masuk</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('surat-masuk.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('surat-keluar.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,14 +23,14 @@
     </div>
 @endif
      
-<form action="{{ route('surat-masuk.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('surat-keluar.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Tanggal diterima:</strong>
-                <input type="date" name="tanggal_diterima" class="form-control">
+                <strong>Tanggal keluar:</strong>
+                <input type="date" name="tanggal_keluar" class="form-control">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

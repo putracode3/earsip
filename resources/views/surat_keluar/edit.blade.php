@@ -7,7 +7,7 @@
                 <h2>Edit Product</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('surat-masuk.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('surat-keluar.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -23,39 +23,39 @@
         </div>
     @endif
     
-    <form action="{{ route('surat-masuk.update',$surat_masuk->id) }}" method="POST" enctype="multipart/form-data"> 
+    <form action="{{ route('surat-keluar.update',$surat_keluar->id) }}" method="POST" enctype="multipart/form-data"> 
         @csrf
         @method('PUT')
      
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Tanggal diterima:</strong>
-                    <input type="date" value="{{ $surat_masuk->tanggal_diterima }}" name="tanggal_diterima" class="form-control">
+                    <strong>Tanggal keluar:</strong>
+                    <input type="date" value="{{ $surat_keluar->tanggal_keluar }}" name="tanggal_keluar" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Perihal:</strong>
-                    <input type="text" value="{{ $surat_masuk->perihal }}" name="perihal" class="form-control">
+                    <input type="text" value="{{ $surat_keluar->perihal }}" name="perihal" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Sifat:</strong>
-                    <input type="text" value="{{ $surat_masuk->sifat }}" name="sifat" class="form-control">
+                    <input type="text" value="{{ $surat_keluar->sifat }}" name="sifat" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Lampiran:</strong>
-                    <input type="number" value="{{ $surat_masuk->lampiran }}" name="lampiran" class="form-control">
+                    <input type="number" value="{{ $surat_keluar->lampiran }}" name="lampiran" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Kode Instansi:</strong>
-                    <input type="text" value="{{ $surat_masuk->kode_instansi }}" name="kode_instansi" class="form-control">
+                    <input type="text" value="{{ $surat_keluar->kode_instansi }}" name="kode_instansi" class="form-control">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

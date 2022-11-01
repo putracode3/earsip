@@ -38,91 +38,96 @@ class SuratMasukController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'detail' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'detail' => 'required',
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
   
         $input = $request->all();
   
-        if ($image = $request->file('image')) {
-            $destinationPath = 'images/';
+        if ($image = $request->file('file')) {
+            $destinationPath = 'surat_masuk/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+            $input['file'] = "$profileImage";
         }
+        $input['tanggal_surat'] = date('Y-m-d');
     
         SuratMasuk::create($input);
      
-        return redirect()->route('surat_masuk.index')
-                        ->with('success','SuratMasuk created successfully.');
+        return redirect()->route('surat-masuk.index')
+            ->with('success','SuratMasuk created successfully.');
     }
      
     /**
      * Display the specified resource.
      *
-     * @param  \App\SuratMasuk  $product
+     * @param  \App\SuratMasuk  $surat_masuk
      * @return \Illuminate\Http\Response
      */
-    public function show(SuratMasuk $product)
+    public function show(SuratMasuk $surat_masuk)
     {
-        return view('surat_masuk.show',compact('product'));
+        $filePath = public_path("surat_masuk/".$surat_masuk->file);
+        return response()->download($filePath);
+
+        // return view('surat_masuk.show',compact('surat_masuk'));
     }
      
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SuratMasuk  $product
+     * @param  \App\SuratMasuk  $surat_masuk
      * @return \Illuminate\Http\Response
      */
-    public function edit(SuratMasuk $product)
+    public function edit(SuratMasuk $surat_masuk)
     {
-        return view('surat_masuk.edit',compact('product'));
+        return view('surat_masuk.edit',compact('surat_masuk'));
     }
     
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SuratMasuk  $product
+     * @param  \App\SuratMasuk  $surat_masuk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SuratMasuk $product)
+    public function update(Request $request, SuratMasuk $surat_masuk)
     {
-        $request->validate([
-            'name' => 'required',
-            'detail' => 'required'
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'detail' => 'required'
+        // ]);
   
         $input = $request->all();
   
-        if ($image = $request->file('image')) {
-            $destinationPath = 'images/';
+        if ($image = $request->file('file')) {
+            $destinationPath = 'surat_masuk/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+            $input['file'] = "$profileImage";
         }else{
             unset($input['image']);
         }
+        $input['tanggal_surat'] = date('Y-m-d');
           
-        $product->update($input);
+        $surat_masuk->update($input);
     
-        return redirect()->route('surat_masuk.index')
+        return redirect()->route('surat-masuk.index')
                         ->with('success','SuratMasuk updated successfully');
     }
   
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SuratMasuk  $product
+     * @param  \App\SuratMasuk  $surat_masuk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SuratMasuk $product)
+    public function destroy(SuratMasuk $surat_masuk)
     {
-        $product->delete();
+        $surat_masuk->delete();
      
-        return redirect()->route('surat_masuk.index')
+        return redirect()->route('surat-masuk.index')
                         ->with('success','SuratMasuk deleted successfully');
     }
 }
